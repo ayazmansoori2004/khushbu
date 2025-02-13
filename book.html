@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Message by Ayaz Mansoori</title>
+     <style>
+      * {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  display: flex;
+  min-height: 100dvh;
+  perspective: 1000px;
+  font: 1em/1.4 "Poppins", sans-serif;
+  overflow: hidden;
+  color: hsl(180 68% 5%);
+  background-image: radial-gradient(
+      circle farthest-corner at 50% 50%,
+      hsl(187 20% 88%) 30%,
+      hsl(149 20% 94%) 100%
+  );
+}
+
+.book {
+  position: relative;
+  display: flex;
+  margin: auto;
+  width: 42cqmin; /* Increased width */
+  pointer-events: none;
+  transform-style: preserve-3d;
+  transition: translate 1s;
+  translate: calc(min(var(--c), 1) * 50%) 0%;
+  rotate: 1 0 0 30deg;
+}
+
+.page {
+  --thickness: 4;
+  flex: none;
+  display: flex;
+  width: 100%;
+  font-size: 2.2cqmin; /* Slightly increased font size */
+  pointer-events: all;
+  user-select: none;
+  transform-style: preserve-3d;
+  transform-origin: left center;
+  transition: transform 1s,
+      rotate 1s ease-in calc((min(var(--i), var(--c)) - max(var(--i), var(--c))) * 50ms);
+  translate: calc(var(--i) * -100%) 0px 0px;
+  transform: translateZ(calc((var(--c) - var(--i) - 0.5) * calc(var(--thickness) * 0.23cqmin)));
+  rotate: 0 1 0 calc(clamp(0, var(--c) - var(--i), 1) * -180deg);
+}
+
+.front,
+.back {
+  position: relative;
+  flex: none;
+  width: 100%;
+  backface-visibility: hidden;
+  overflow: hidden;
+  background-color: #fff;
+  translate: 0px;
+}
+
+.back {
+  translate: -100% 0;
+  rotate: 0 1 0 180deg;
+}
+
+.book {
+  counter-reset: page -1;
+}
+
+.book a {
+  color: inherit;
+}
+
+.page {
+  box-shadow: 0em 0.5em 1em -0.2em #00000020;
+}
+
+.front,
+.back {
+  display: flex;
+  flex-flow: column wrap;
+  justify-content: space-between;
+  padding: 2em;
+  border: 1px solid #0002;
+}
+
+.front:has(img),
+.back:has(img) {
+  padding: 0;
+}
+
+.front img,
+.back img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.front::after,
+.back::after {
+  position: absolute;
+  bottom: 1em;
+  counter-increment: page;
+  content: counter(page) ".";
+  font-size: 0.8em;
+}
+
+.cover::after {
+  content: "";
+}
+
+.front::after {
+  right: 1em;
+}
+
+.front {
+  background: linear-gradient(to left, #f7f7f7 80%, #eee 100%);
+  border-radius: 0.1em 0.5em 0.5em 0.1em;
+}
+
+.back::after {
+  left: 1em;
+}
+
+.back {
+  background-image: linear-gradient(to right, #f7f7f7 80%, #eee 100%);
+  border-radius: 0.5em 0.1em 0.1em 0.5em;
+}
+
+.cover {
+  background: radial-gradient(
+          circle farthest-corner at 80% 20%,
+          hsl(150 80% 20% / 0.3) 0%,
+          hsl(170 60% 10% / 0.1) 100%
+      ),
+      hsl(231, 32%, 29%) url("./cover.jpg") 50% / cover;
+  color: hsl(0, 100%, 30%); /* Dark red text color for cover page */
+}
+
+h1,
+h2,
+h3 {
+  margin-bottom: 1px;
+  color: hsl(0, 100%, 30%); /* Dark red heading color */
+}
+
+p {
+  margin-top: 1px;
+  margin-bottom: 8px;
+  line-height: 1.4;
+  color: hsl(0, 100%, 30%); /* Dark red text color for paragraphs */
+}
+
+.front,
+.back {
+  padding: 1.5em;
+  color: hsl(0, 100%, 30%); /* Dark red text color for front and back pages */
+}
+
+.book {
+  width: 40cqmin; /* Slightly increased width */
+}
+
+.page {
+  font-size: 2cqmin; /* Slightly increased font size */
+}
+
+p:last-child {
+  margin-bottom: 0;
+}
+
+.front,
+.back {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  padding: 1.5em;
+}
+
+h2 {
+  margin-bottom: 5px;
+}
+
+p {
+  margin-top: 5px;
+  line-height: 1.4;
+}
+
+
+body {
+  margin: 0;
+  display: flex;
+  min-height: 100dvh;
+  perspective: 1000px;
+  font: 1em/1.4 "Poppins", sans-serif;
+  overflow: hidden;
+  color: hsl(180 68% 5%);
+  background: linear-gradient(to right, #ff7eb9, #ff65a3, #ff165d);
+  background-size: 400% 400%;
+  animation: gradientAnimation 10s ease infinite;
+}
+
+@keyframes gradientAnimation {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+/* Emoji Animation */
+.emoji {
+  position: absolute;
+  font-size: 3rem;
+  opacity: 0;
+  animation: floatEmojis 6s ease-in-out infinite;
+}
+
+@keyframes floatEmojis {
+  0% {
+    transform: translateY(100px);
+    opacity: 1;
+  }
+  50% {
+    transform: translateY(-100px) rotate(20deg);
+    opacity: 0.7;
+  }
+  100% {
+    transform: translateY(100px);
+    opacity: 1;
+  }
+}
+
+/* Add random timing for each emoji */
+.emoji:nth-child(1) {
+  animation-delay: 0s;
+  left: 10%;
+}
+.emoji:nth-child(2) {
+  animation-delay: 1s;
+  left: 20%;
+}
+.emoji:nth-child(3) {
+  animation-delay: 2s;
+  left: 30%;
+}
+.emoji:nth-child(4) {
+  animation-delay: 3s;
+  left: 40%;
+}
+.emoji:nth-child(5) {
+  animation-delay: 4s;
+  left: 50%;
+}
+.emoji:nth-child(6) {
+  animation-delay: 5s;
+  left: 60%;
+}
+.emoji:nth-child(7) {
+  animation-delay: 6s;
+  left: 70%;
+}
+.emoji:nth-child(8) {
+  animation-delay: 7s;
+  left: 80%;
+}
+.emoji:nth-child(9) {
+  animation-delay: 8s;
+  left: 90%;
+}
+
+
+     </style>
+  </head>
+  <body>
+    <div class="book">
+      <div class="page">
+        <div class="front cover">
+          <h1
+            style="
+              color: rgb(255, 255, 255);
+              text-shadow: 5px 2px 5px rgb(0, 0, 0);
+            "
+          >
+            A Message for You Meri Jaan Khushbu🤍
+          </h1>
+
+          <p
+            style="
+              color: rgb(255, 255, 255);
+              text-shadow: 5px 2px 5px rgb(0, 0, 0);
+            "
+          >
+            2025.<br />AYAZ Special Edition
+          </p>
+        </div>
+        <div class="back">
+          <h2>A Special Beginning ❤️For you Jaanu✨</h2>
+
+       <p>कुछ लोग अप्रत्याशित रूप से हमारे जीवन में आते हैं, फिर भी एक स्थायी प्रभाव छोड़ जाते हैं। आप उन दुर्लभ आत्माओं में से एक हैं जो हर पल को थोड़ा और खास बना देते हैं।
+
+        पहली बातचीत से ही, आपके बारे में कुछ बातें उभर कर सामने आईं—आपकी दयालुता, आपका आकर्षण और जिस सहज तरीके से आप अपने आस-पास की दुनिया को उज्जवल बनाते हैं।
+        
+        यह सिर्फ़ शब्दों का संग्रह नहीं है; यह दिखाने का एक छोटा सा तरीका है कि आप मेरे लिए कितने मायने रखते हैं। आपको यह याद दिलाने का एक तरीका कि आपकी सराहना की जाती है, आपकी प्रशंसा की जाती है और आप वाकई खास हैं।
+        
+        तो, यहाँ हमारे लिए है—हमारी बातचीत, हमारा संबंध और आने वाले खूबसूरत पल।💖</p>
+
+          <p>
+            हम लोग पहली बार... <br />  
+            19 नवंबर 2022 को मिले थे , ....
+          </p>
+        </div>
+      </div>
+      <!--2nd page-->
+      <div class="page">
+        <div class="front">
+          <h2>अजनबी से कुछ खास तक सफर  ❤️✨</h2>
+          <p>
+            यह सोचना आशर्चयचकित है की हम लोग कुछ साल पहले एक दूसरे को जानते नहीं थे लेकिन आज एक दूसरे की जान बन चुके है इसके लिए मै आपका आभारी हु |<br> 
+, पहले मुझे यकीन था की मै कैसे तुमसे बात करूँगा हम लोग किस बारे में बात करेंगे या क्या बात करेंगे ये सब को लेके मै डरा रहता था , लेकिन अब, आपके साथ समय बिताने के बाद, मुझे कुछ वाकई खास एहसास हुआ है—
+<br>तुम सच में बोहत प्यारी हो LOVE YOU . 💖
+
+आपके शब्द, आपकी दयालुता, और जिस तरह से आप मुझे मुस्कुराते हैं, उसने पहले ही मेरे दिल में जगह बना ली है। मुझे कभी उम्मीद नहीं थी कि मैं आप जैसे किसी व्यक्ति से मिलूँगा, लेकिन अब, मैं अपने जीवन में आपके बिना रहने की कल्पना भी नहीं कर सकता। 💕
+          </p>
+        </div>
+        <div class="back">
+          <img src="./1.jpg" alt="Img 1" />
+        </div>
+      </div>
+      <!--3rd page-->
+      <div class="page">
+        <div class="front">
+          <h2>आपके प्यार का जादू  ✨💖</h2>
+          <p>
+            आपमें एक आकर्षण है, एक ऐसी खूबसूरती है जिसे शब्दों में बयां नहीं किया जा सकता। यह आपकी आंखों की चमक, आपकी मुस्कान की गर्मजोशी और हर पल जिस सहज तरीके से आप चमकते हैं, उसमें है। आपके बारे में हर छोटी-छोटी बात इतनी परफेक्ट, इतनी मंत्रमुग्ध करने वाली लगती है कि मैं अक्सर सोचता हूं—
+
+क्या आपको एक उत्कृष्ट कृति के रूप में तैयार किया गया था?
+
+ऐसा लगता है जैसे ब्रह्मांड ने अपना समय लिया, ध्यान से आप जैसे अद्भुत व्यक्ति को आकार दिया, बस दुनिया को थोड़ा उज्जवल बनाने के लिए। और मेरा विश्वास करें, आप ऐसा करते हैं। हर एक दिन। 💕
+
+आपकी उपस्थिति एक मधुर धुन की तरह लगती है, सुखदायक लेकिन अविस्मरणीय। जिस तरह से आप खुद को पेश करते हैं, आपके दिल में दयालुता और आपकी आत्मा में पवित्रता आपको और भी खास बनाती है। यह सिर्फ इस बारे में नहीं है कि आप कितनी सुंदर दिखती हैं - यह इस बारे में है कि आप वास्तव में कितनी सुंदर हैं।
+
+जब भी मैं आपको देखता हूं, मुझे याद आता है कि जीवन में कुछ चीजें बस जादुई होती हैं, और आप, बिना किसी संदेह के, उनमें से एक हैं। ✨💖
+          </p>
+        </div>
+        <div class="back">
+          <h2>आपके भीतर की शक्ति 💫✨</h2>
+          <p>
+            आपकी खूबसूरती के अलावा, जो सबसे अलग है, वह है आपका समर्पण, कड़ी मेहनत और जुनून। आप सिर्फ़ अपने दिखने के तरीके की प्रशंसा करने वाले व्यक्ति नहीं हैं - आप एक प्रेरणा हैं। जिस तरह से आप केंद्रित रहते हैं, अपने सपनों का पीछा करते हैं और हर चीज़ में अपना सर्वश्रेष्ठ देते हैं, उससे मैं आपका और भी ज़्यादा सम्मान करता हूँ।
+
+आप एक सच्चे प्रेमी हैं।
+
+आपका आत्मविश्वास, दयालुता और ताकत आपको दूसरों से अलग बनाती है। आप सिर्फ़ एक रास्ता नहीं अपनाते - आप एक रास्ता बनाते हैं। आपका दृढ़ संकल्प देखकर मुझे याद आता है कि सच्ची सुंदरता सिर्फ़ दिखावे के बारे में नहीं है, बल्कि आपके भीतर की आग के बारे में है। और यही बात आपको वाकई अविश्वसनीय बनाती है। 💖✨
+
+कोई भी चुनौती आपके लिए बहुत बड़ी नहीं है, और कोई भी लक्ष्य आपकी पहुँच से बाहर नहीं है। आप अपने आस-पास के लोगों को बेहतर बनने, बड़े सपने देखने और खुद पर विश्वास करने के लिए प्रेरित करते हैं। आपको बढ़ते और इतना कुछ हासिल करते देखना मुझे आपको जानने पर गर्व महसूस कराता है। 🌟
+          </p>
+        </div>
+      </div>
+      <!--4th page-->
+      <div class="page">
+        <div class="front">
+          <h2>मेरी जिंदगी का सबसे खूबसूरत दिन 🤞💖</h2>
+          <p>
+            मेरी जिंदगी का सबसे खूबसूरत दिन वो था जब तुमने मुझे पसंद किया, मुझे तुमने प्यार किया , वो दिन मेरी जिंदगी का हसीन पल था जब तुम मेरी जिंदगी में आयी और मुझे प्यार करना सिखाया सच में खुसबू मैं तुमसे बोहत प्यार करता हु | 
+I Love you meri jaan  💕
+          </p>
+        </div>
+        <div class="back">
+          <img src="./2.jpg" alt="Img 1" />
+        </div>
+      </div>
+      <!--5th page-->
+      <div class="page">
+        <div class="front">
+          <h1>A Wish from the Heart 💫💖</h1>
+          <p>
+            Sometimes, I find myself wishing I could meet you in person, just to see the smile that brightens my day and hear the voice that makes everything feel lighter. Maybe it’s a long shot, but the thought still lingers.
+
+            Even though we’ve only known each other for a short time, I hope you won’t forget me. Our moments, our conversations—they mean more to me than you might realize.
+            
+            No matter what happens, I truly wish you a life filled with happiness, peace, and everything you deserve. 💕
+            
+            You are someone special, and I hope life gives you endless reasons to smile. No matter where we go from here, I’ll always be grateful for the time we’ve shared. And if fate ever allows, maybe one day our paths will cross for real. ✨
+          </p>
+        </div>
+        <div class="back">
+          <h1>Always Here for You 💖✨</h1>
+          <p>
+            You are an inspiration, and I want you to know that I’ll always be here for you, no matter what. If you ever need anything—someone to listen, someone to support you, or just someone to make you smile—I’m just a message away.
+
+            My time is yours whenever you need it.
+            
+            Life can be unpredictable, but I hope you never feel alone. Whether it’s a good day or a tough one, I’ll always be here to cheer you on, to remind you how amazing you are.
+            
+            You deserve nothing but happiness, and if I can be a small part of that, I’d be honored. No matter where life takes us, just know that you’ll always have someone who cares—someone who truly believes in you. 💕
+          </p>
+        </div>
+      </div>
+      <!--6th page-->
+      <div class="page">
+        <div class="front">
+          <h2>The Beauty of You ✨💖</h2>
+          <p>
+            Can we take a moment to appreciate how effortlessly stunning you look in anything you wear? It’s not just the clothes—it’s the confidence, the grace, and the way you carry yourself that make you truly unforgettable.
+
+            You have a presence that turns heads and a charm that captivates hearts.
+            
+            There’s something about you that draws people in—maybe it’s your elegance, your warmth, or just the way you light up any room you walk into. Whatever it is, it’s undeniable, and it makes you absolutely perfect in every way.
+            
+            But beyond your beauty, it’s your kindness and the way you make others feel special that truly set you apart. You radiate positivity, and your energy is something rare and precious.
+            
+            No matter where you are or what you do, you leave a lasting impression. You are not just beautiful—you are extraordinary. 💖✨
+          </p>
+        </div>
+        <div class="back">
+          <h2>Absolutely Breathtaking ✨💖</h2>
+          <p>
+            In everything you wear, you are nothing short of breathtaking. It’s not just about your looks—it’s the way you carry yourself with such confidence and grace that makes you truly mesmerizing.
+
+            I’m completely in awe of you.
+            
+            Your presence alone can brighten any space, and your energy is simply magnetic. The way you move, the way you smile, and the way you make others feel at ease—it’s all part of your undeniable charm.
+            
+            You don’t just turn heads; you leave lasting impressions. There’s something so effortlessly captivating about you that makes it impossible to look away.
+            
+            You are not just beautiful—you are a work of art, inside and out. 💕✨
+          </p>
+        </div>
+      </div>
+      <!--7th page-->
+      <div class="page">
+        <div class="front">
+          <h2>Grateful for You🌹❤</h2>
+          <p>
+            I just wanted to take a moment to let you know how much I appreciate you. From the very start, you’ve been someone truly special—someone I admire more than words can express.
+
+            Meeting you, even for a short time, has been a gift.
+            
+            Your kindness, your presence, and the way you make every conversation feel meaningful mean more to me than you know. I’m grateful that our paths crossed, and no matter what the future holds, I’ll always be thankful for you.
+            
+            Some people leave a mark on our hearts without even trying—and you are one of them. 💕
+          </p>
+        </div>
+        <div class="back">
+          <h2>Will You Be Mine? ❤️✨</h2>
+          <p>From the moment we started talking, you’ve been on my mind in the best way possible. Your kindness, your beauty, your energy—everything about you feels so special to me.
+
+            You make my world brighter, my days better, and my heart a little fuller.
+            
+            I don’t know what the future holds, but I do know one thing—I’d love to have you by my side. So, here’s my question, straight from the heart…
+            
+            Will you be mine? 💖💕 </p>
+        </div>
+      </div>
+
+      <div class="page">
+        <div class="front">
+          <img src="./4.png" alt="Img 1" />
+        </div>
+        <div class="back cover">
+          <h3>Cutest Queen</h3>
+          <p>
+            Content:By Ayaz Mansoori<br /><a
+              href=""
+              target="_blank"
+              rel="nofollow"></a>
+
+            <br />
+          </p>
+        </div>
+      </div>
+    </div>
+
+
+    <div class="emoji">❤️‍🔥</div>
+<div class="emoji">🫶🏻</div>
+<div class="emoji">❤️</div>
+<div class="emoji">😘</div>
+<div class="emoji">👨‍❤️‍💋‍👨</div>
+<div class="emoji">💓</div>
+<div class="emoji">❣️</div>
+<div class="emoji">💘</div>
+<div class="emoji">💖</div>
+<div class="emoji">💙</div>
+<div class="emoji">💚</div>
+<div class="emoji">🥰</div>
+<div class="emoji">💗</div>
+
+<script>
+  const flipBook = (elBook) => {
+    elBook.style.setProperty("--c", 0); // Set current page
+    elBook.querySelectorAll(".page").forEach((page, idx) => {
+      page.style.setProperty("--i", idx);
+      page.addEventListener("click", (evt) => {
+        if (evt.target.closest("a")) return;
+        const curr = evt.target.closest(".back") ? idx : idx + 1;
+        elBook.style.setProperty("--c", curr);
+      });
+    });
+  };
+  
+  document.querySelectorAll(".book").forEach(flipBook);
+  
+</script>
+ 
+  </body>
+</html>
+
